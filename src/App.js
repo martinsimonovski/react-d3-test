@@ -7,7 +7,7 @@ const config = {
   data: data,
   container: '#chart',
   box_padding: 10,
-  rowHeight: 60,
+  rowHeight: 80,
   metrics: {
     type: 'overall', // [overall, yearly, quarterly-[months,weeks], monthly-[months,weeks]]
     startDate: '2019-04-01 10:11:12.123456',
