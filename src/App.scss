@@ -1,0 +1,37 @@
+$strokeColor: #ededed;
+$strokeWidth: 1;
+$defaultBackground: #fcfcfc;
+$cellBackground: white;
+
+.chart {
+  width: 100%;
+  text-align: center;
+  outline: 1px solid $strokeColor;
+  background: $defaultBackground;
+}
+
+.side-panel {
+  display: inline-block;
+}
+
+.header-section {
+  outline: 1px solid $strokeColor;
+}
+
+.draw-area {
+  display: inline-block;
+
+  .ranges {
+    fill: $defaultBackground;
+    stroke: $strokeColor;
+    stroke-width: $strokeWidth;
+  }
+  .block {
+    fill: $cellBackground;
+    stroke: $strokeColor;
+    stroke-width: $strokeWidth;
+  }
+  .title {
+    font-size: 13px;
+  }
+}

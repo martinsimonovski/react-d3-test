@@ -3,6 +3,8 @@ import * as d3 from "d3";
 import { boundaries } from "../utils";
 import { D3Context } from "../context";
 import { Header } from "./Header";
+import { SidePanel } from "./SidePanel";
+import { DrawArea } from "./DrawArea";
 
 export const Gantt = props => {
   const { config } = props;
@@ -12,8 +14,10 @@ export const Gantt = props => {
   const [chartHeight, setChartHeight] = useState(100);
   const rowHeight = 20;
   const headerHeight = 30;
-  const leftColumn = 300;
-  const { headerRanges, dateBoundary } = boundaries.get(config.metrics);
+  const sidePanel = 300;
+  const { headerRanges, subHeaderRanges, dateBoundary } = boundaries.get(
+    config.metrics
+  );
 
   useEffect(() => {
     setChartWidth(ref.current.offsetWidth);
@@ -37,13 +41,25 @@ export const Gantt = props => {
   const x = d3
     .scaleTime()
     .domain(dateBoundary)
-    .range([0, width - leftColumn]);
+    .range([0, width - sidePanel]);
   const y = d3.scaleBand().range([0, height], 0.1);
 
   return (
     <D3Context.Provider value={{ x, y, dateBoundary }}>
       <div ref={ref} className="chart" width="100%">
-        <Header height={headerHeight} width={width} range={headerRanges[0]} />
+        <Header
+          height={headerHeight}
+          width={width}
+          range={headerRanges[0]}
+          paddingLeft={sidePanel}
+        />
+        <SidePanel height={height} width={sidePanel} />
+        <DrawArea
+          height={height}
+          width={width - sidePanel}
+          paddingLeft={sidePanel}
+          ranges={subHeaderRanges}
+        />
       </div>
     </D3Context.Provider>
   );

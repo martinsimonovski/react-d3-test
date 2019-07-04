@@ -1,6 +1,6 @@
 import React from "react";
 import { Gantt } from "./components";
-import "./App.css";
+import "./App.scss";
 
 const config = {
   data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],

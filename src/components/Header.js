@@ -13,7 +13,7 @@ export const Header = props => {
   return (
     <div className="header-section" style={{ height, display: "block" }}>
       <svg width={width} height={height}>
-        <g transform={`translate(0, ${height})`}>
+        <g transform={`translate(0, ${height})`} width={width} height={height}>
           <text x={x} y={y} height={d3Ctx.y.bandwidth()} width={textWidth}>
             {range.name}
           </text>
