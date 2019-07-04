@@ -1,7 +1,7 @@
 import React from "react";
 import { Range } from "./Range";
 
-export const DrawArea = props => {
+export const Timeline = props => {
   const { height, width, ranges } = props;
   return (
     <div style={{ height: height, width: width }} className="draw-area">

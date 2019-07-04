@@ -4,7 +4,7 @@ import { boundaries } from "../utils";
 import { D3Context } from "../context";
 import { Header } from "./Header";
 import { SidePanel } from "./SidePanel";
-import { DrawArea } from "./DrawArea";
+import { Timeline } from "./Timeline";
 
 export const Gantt = props => {
   const { config } = props;
@@ -54,7 +54,7 @@ export const Gantt = props => {
           paddingLeft={sidePanel}
         />
         <SidePanel height={height} width={sidePanel} />
-        <DrawArea
+        <Timeline
           height={height}
           width={width - sidePanel}
           paddingLeft={sidePanel}
