@@ -2,11 +2,12 @@ import React from "react";
 import { Range } from "./Range";
 
 export const Timeline = props => {
-  const { height, width, ranges } = props;
+  const { height, width, ranges, rangesHeight } = props;
+
   return (
-    <div style={{ height: height, width: width }} className="draw-area">
-      <svg style={{ height: height, width: width }}>
-        <Range width={width} height={30} ranges={[...ranges]} />
+    <div style={{ height, width }} className="timeline">
+      <svg style={{ height, width }}>
+        <Range width={width} height={rangesHeight} ranges={[...ranges]} />
       </svg>
     </div>
   );

@@ -18,6 +18,7 @@ const RangeBackground = props => {
 };
 
 const RangeBlock = range => {
+  const { height } = range;
   const d3Ctx = useContext(D3Context);
 
   const blockWidth = helpers.useWidth(range);
@@ -27,7 +28,7 @@ const RangeBlock = range => {
     <rect
       className="block"
       x={d3Ctx.x(start)}
-      height={30}
+      height={height}
       width={blockWidth}
       y={0}
     />
@@ -35,6 +36,7 @@ const RangeBlock = range => {
 };
 
 const RangeText = range => {
+  const { height } = range;
   const d3Ctx = useContext(D3Context);
 
   const blockWidth = helpers.useWidth(range);
@@ -44,9 +46,9 @@ const RangeText = range => {
     <text
       className="title"
       x={d3Ctx.x(start) + 10}
-      height={30}
+      height={height}
       width={blockWidth}
-      y={30 - 10}
+      y={height - 10}
     >
       {range.name}
     </text>
@@ -62,11 +64,11 @@ export const Range = props => {
 
       <g>
         {ranges &&
-          ranges.map(range => <RangeBlock key={range.startDate} {...range} />)}
+          ranges.map(r => <RangeBlock key={r.startDate} {...r} {...props} />)}
       </g>
       <g>
         {ranges &&
-          ranges.map(range => <RangeText key={range.startDate} {...range} />)}
+          ranges.map(r => <RangeText key={r.startDate} {...r} {...props} />)}
       </g>
     </g>
   );

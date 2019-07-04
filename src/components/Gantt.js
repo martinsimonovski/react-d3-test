@@ -53,12 +53,17 @@ export const Gantt = props => {
           range={headerRanges[0]}
           paddingLeft={sidePanel}
         />
-        <SidePanel height={height} width={sidePanel} />
+        <SidePanel
+          height={height}
+          width={sidePanel}
+          headerHeight={headerHeight}
+        />
         <Timeline
           height={height}
           width={width - sidePanel}
           paddingLeft={sidePanel}
           ranges={subHeaderRanges}
+          rangesHeight={headerHeight}
         />
       </div>
     </D3Context.Provider>

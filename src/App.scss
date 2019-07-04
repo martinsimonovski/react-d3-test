@@ -12,13 +12,19 @@ $cellBackground: white;
 
 .side-panel {
   display: inline-block;
+
+  .side-panel-header {
+    fill: $cellBackground;
+    stroke: $strokeColor;
+    stroke-width: $strokeWidth;
+  }
 }
 
 .header-section {
   outline: 1px solid $strokeColor;
 }
 
-.draw-area {
+.timeline {
   display: inline-block;
 
   .ranges {
