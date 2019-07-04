@@ -44,7 +44,7 @@ const SidePanelRow = row => {
         width={width}
         height={rowHeight}
       >
-        {row.name}
+        {row.firstName + ` ` + row.lastName}
       </text>
     </Fragment>
   );

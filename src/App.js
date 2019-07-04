@@ -1,14 +1,10 @@
 import React from 'react';
 import { Gantt } from './components';
+import data from './data';
 import './App.scss';
 
 const config = {
-  data: [
-    { id: 1, name: 'Resource 1', projects: [1, 2, 3] },
-    { id: 2, name: 'Resource 2', projects: [1] },
-    { id: 3, name: 'Resource 3', projects: [1, 2] },
-    { id: 4, name: 'Resource 4', projects: [1] }
-  ],
+  data: data,
   container: '#chart',
   box_padding: 10,
   rowHeight: 60,
