@@ -25,13 +25,22 @@ const SidePanelHeader = props => {
   );
 };
 
+const SidePanelRow = row => {
+  const { width, height, y } = row;
+  return <rect className="row" x={0} y={y} width={width} height={height} />;
+};
+
 export const SidePanel = props => {
-  const { height, width, headerHeight } = props;
+  const { height, width, headerHeight, rows } = props;
   console.log({ props });
   return (
     <div style={{ height, width }} className="side-panel">
       <svg style={{ height, width }}>
         <SidePanelHeader width={width} height={headerHeight} />
+        <g>
+          {rows &&
+            rows.map(row => <SidePanelRow key={row.id} {...props} {...row} />)}
+        </g>
       </svg>
     </div>
   );

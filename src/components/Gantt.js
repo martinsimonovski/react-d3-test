@@ -6,6 +6,25 @@ import { Header } from "./Header";
 import { SidePanel } from "./SidePanel";
 import { Timeline } from "./Timeline";
 
+const getRows = (data, barHeight, headerHeight) => {
+  let height = 0 - barHeight;
+
+  const rows = data.map(one => {
+    const row = {
+      ...one,
+      y: height + barHeight + headerHeight,
+      height: one.projects.length * barHeight
+    };
+    height += one.projects.length * barHeight;
+    return row;
+  });
+
+  return {
+    rows,
+    height
+  };
+};
+
 export const Gantt = props => {
   const { config } = props;
   const ref = useRef();
@@ -19,9 +38,15 @@ export const Gantt = props => {
     config.metrics
   );
 
+  const { rows, height: rowsHeight } = getRows(
+    config.data,
+    config.barHeight,
+    headerHeight
+  );
+
   useEffect(() => {
     setChartWidth(ref.current.offsetWidth);
-    const h = d3.max([config.data.length * rowHeight]);
+    const h = d3.max([rowsHeight + headerHeight * 2]);
     setChartHeight(h);
     setIsSet(true);
   }, [isSet, config.data.length]);
@@ -57,6 +82,7 @@ export const Gantt = props => {
           height={height}
           width={sidePanel}
           headerHeight={headerHeight}
+          rows={rows}
         />
         <Timeline
           height={height}

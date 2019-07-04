@@ -18,6 +18,12 @@ $cellBackground: white;
     stroke: $strokeColor;
     stroke-width: $strokeWidth;
   }
+
+  .row {
+    fill: $cellBackground;
+    stroke: $strokeColor;
+    stroke-width: $strokeWidth;
+  }
 }
 
 .header-section {
