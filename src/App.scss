@@ -24,6 +24,11 @@ $cellBackground: white;
     stroke: $strokeColor;
     stroke-width: $strokeWidth;
   }
+
+  .label {
+    font-size: 13px;
+    font-weight: bold;
+  }
 }
 
 .header-section {
@@ -45,5 +50,11 @@ $cellBackground: white;
   }
   .title {
     font-size: 13px;
+  }
+
+  .grid-line {
+    stroke: $strokeColor;
+    stroke-width: $strokeWidth;
+    opacity: 0.85;
   }
 }

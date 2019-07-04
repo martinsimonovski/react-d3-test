@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from 'react';
 
 const SidePanelHeader = props => {
   const { width, height } = props;
@@ -26,20 +26,42 @@ const SidePanelHeader = props => {
 };
 
 const SidePanelRow = row => {
-  const { width, height, y } = row;
-  return <rect className="row" x={0} y={y} width={width} height={height} />;
+  const { width, rowHeight, i, headerHeight } = row;
+
+  return (
+    <Fragment>
+      <rect
+        className="row"
+        x={0}
+        y={rowHeight * i + headerHeight}
+        width={width}
+        height={rowHeight}
+      />
+      <text
+        className="label"
+        x={10}
+        y={rowHeight * i + headerHeight + rowHeight / 2 + 5}
+        width={width}
+        height={rowHeight}
+      >
+        {row.name}
+      </text>
+    </Fragment>
+  );
 };
 
 export const SidePanel = props => {
   const { height, width, headerHeight, rows } = props;
-  console.log({ props });
+
   return (
     <div style={{ height, width }} className="side-panel">
       <svg style={{ height, width }}>
         <SidePanelHeader width={width} height={headerHeight} />
         <g>
           {rows &&
-            rows.map(row => <SidePanelRow key={row.id} {...props} {...row} />)}
+            rows.map((row, i) => (
+              <SidePanelRow key={row.id} {...props} {...row} i={i} />
+            ))}
         </g>
       </svg>
     </div>

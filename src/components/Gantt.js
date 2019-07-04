@@ -1,29 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
-import * as d3 from "d3";
-import { boundaries } from "../utils";
-import { D3Context } from "../context";
-import { Header } from "./Header";
-import { SidePanel } from "./SidePanel";
-import { Timeline } from "./Timeline";
-
-const getRows = (data, barHeight, headerHeight) => {
-  let height = 0 - barHeight;
-
-  const rows = data.map(one => {
-    const row = {
-      ...one,
-      y: height + barHeight + headerHeight,
-      height: one.projects.length * barHeight
-    };
-    height += one.projects.length * barHeight;
-    return row;
-  });
-
-  return {
-    rows,
-    height
-  };
-};
+import React, { useRef, useEffect, useState } from 'react';
+import * as d3 from 'd3';
+import { boundaries } from '../utils';
+import { D3Context } from '../context';
+import { Header } from './Header';
+import { SidePanel } from './SidePanel';
+import { Timeline } from './Timeline';
 
 export const Gantt = props => {
   const { config } = props;
@@ -31,31 +12,24 @@ export const Gantt = props => {
   const [isSet, setIsSet] = useState(false);
   const [chartWidth, setChartWidth] = useState(500);
   const [chartHeight, setChartHeight] = useState(100);
-  const rowHeight = 20;
   const headerHeight = 30;
   const sidePanel = 300;
   const { headerRanges, subHeaderRanges, dateBoundary } = boundaries.get(
     config.metrics
   );
 
-  const { rows, height: rowsHeight } = getRows(
-    config.data,
-    config.barHeight,
-    headerHeight
-  );
-
   useEffect(() => {
     setChartWidth(ref.current.offsetWidth);
-    const h = d3.max([rowsHeight + headerHeight * 2]);
+    const h = d3.max([config.data.length * config.rowHeight + headerHeight]);
     setChartHeight(h);
     setIsSet(true);
-  }, [isSet, config.data.length]);
+  }, [isSet, config.data.length, config.rowHeight]);
 
   if (!isSet) {
     return (
       <div ref={ref} className="chart">
-        {" "}
-        Loading...{" "}
+        {' '}
+        Loading...{' '}
       </div>
     );
   }
@@ -82,7 +56,8 @@ export const Gantt = props => {
           height={height}
           width={sidePanel}
           headerHeight={headerHeight}
-          rows={rows}
+          rows={config.data}
+          rowHeight={config.rowHeight}
         />
         <Timeline
           height={height}
@@ -90,6 +65,8 @@ export const Gantt = props => {
           paddingLeft={sidePanel}
           ranges={subHeaderRanges}
           rangesHeight={headerHeight}
+          rows={config.data}
+          rowHeight={config.rowHeight}
         />
       </div>
     </D3Context.Provider>

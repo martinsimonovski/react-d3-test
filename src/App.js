@@ -1,26 +1,26 @@
-import React from "react";
-import { Gantt } from "./components";
-import "./App.scss";
+import React from 'react';
+import { Gantt } from './components';
+import './App.scss';
 
 const config = {
   data: [
-    { id: 1, name: "Resource 1", projects: [1, 2, 3] },
-    { id: 2, name: "Resource 2", projects: [1] },
-    { id: 3, name: "Resource 3", projects: [1, 2] },
-    { id: 4, name: "Resource 4", projects: [1] }
+    { id: 1, name: 'Resource 1', projects: [1, 2, 3] },
+    { id: 2, name: 'Resource 2', projects: [1] },
+    { id: 3, name: 'Resource 3', projects: [1, 2] },
+    { id: 4, name: 'Resource 4', projects: [1] }
   ],
-  container: "#chart",
+  container: '#chart',
   box_padding: 10,
-  barHeight: 20,
+  rowHeight: 60,
   metrics: {
-    type: "overall", // [overall, yearly, quarterly-[months,weeks], monthly-[months,weeks]]
-    startDate: "2019-04-01 10:11:12.123456",
+    type: 'overall', // [overall, yearly, quarterly-[months,weeks], monthly-[months,weeks]]
+    startDate: '2019-04-01 10:11:12.123456',
     endDate: null,
-    subType: "weeks"
+    subType: 'weeks'
   },
   showChildColor: false,
   headerAdd: () => {
-    alert("Yeyy!!!");
+    alert('Yeyy!!!');
   }
 };
 
