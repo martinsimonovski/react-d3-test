@@ -1,7 +1,7 @@
-import React from 'react';
-import { Range } from './Range';
-import { Grid } from './Grid';
-import { Bars } from './Bars';
+import React from "react";
+import { Range } from "./Range";
+import { Grid } from "./Grid";
+import { Bars } from "./Bars";
 
 export const Timeline = props => {
   const { height, width, ranges, rangesHeight, rows, rowHeight } = props;

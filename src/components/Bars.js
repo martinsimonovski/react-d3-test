@@ -1,29 +1,27 @@
-import React from 'react';
+import React from "react";
 
 const GridRow = row => {
-  const { width, rowHeight, i, headerHeight } = row;
+  const { width, rowHeight, parentY, projects } = row;
 
-  const marginTopAndBottom = 4;
-  const barPadding = 4;
-  let barHeight = (rowHeight - marginTopAndBottom * 2) / row.projects.length;
-  barHeight -= barPadding;
-  barHeight = barHeight > 10 ? 10 : barHeight;
+  const count = projects.length;
+  const paddingTop = 4;
+  let height = (rowHeight - paddingTop * count) / count;
+  height = height > 10 ? 10 : height;
 
   return (
     <g>
-      {row.projects &&
-        row.projects.map((p, index) => {
-          const parentY = rowHeight * i + headerHeight + marginTopAndBottom;
-          const barY = parentY + (barPadding * index + barHeight * index);
+      {projects &&
+        projects.map((p, index) => {
+          const y = parentY + height * index;
 
           return (
             <rect
-              key={`${i}${index}`}
+              key={`${index}${p.id}`}
               x={0}
-              y={barY}
+              y={y + paddingTop}
               width={width}
-              height={barHeight}
-              fill={'#A0F0FA'}
+              height={height - paddingTop}
+              fill={"#A0F0FA"}
             />
           );
         })}
@@ -32,12 +30,24 @@ const GridRow = row => {
 };
 
 export const Bars = props => {
-  const { rows } = props;
+  const { rows, rowHeight, headerHeight } = props;
 
   return (
     <g>
       {rows &&
-        rows.map((r, i) => <GridRow key={r.id} {...props} {...r} i={i} />)}
+        rows.map((r, i) => {
+          const parentY = rowHeight * i + headerHeight;
+          return (
+            <GridRow
+              key={r.id}
+              {...r}
+              parentY={parentY}
+              projects={r.projects}
+              rowHeight={rowHeight}
+              width={props.width} // temp
+            />
+          );
+        })}
     </g>
   );
 };
