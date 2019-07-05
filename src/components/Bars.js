@@ -30,13 +30,13 @@ const GridRow = row => {
 };
 
 export const Bars = props => {
-  const { rows, rowHeight, headerHeight } = props;
+  const { rows, rowHeight, paddingTop } = props;
 
   return (
     <g>
       {rows &&
         rows.map((r, i) => {
-          const parentY = rowHeight * i + headerHeight;
+          const parentY = rowHeight * i + paddingTop;
           return (
             <GridRow
               key={r.id}

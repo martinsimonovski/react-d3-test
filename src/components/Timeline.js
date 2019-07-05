@@ -15,14 +15,14 @@ export const Timeline = props => {
           height={height}
           rows={rows}
           rowHeight={rowHeight}
-          headerHeight={rangesHeight}
+          paddingTop={rangesHeight}
         />
         <Bars
           width={width}
           height={height}
           rows={rows}
           rowHeight={rowHeight}
-          headerHeight={rangesHeight}
+          paddingTop={rangesHeight}
         />
       </svg>
     </div>
