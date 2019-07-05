@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { D3Context } from "../context";
+import { helpers } from "../utils";
 
 const GridRow = row => {
-  const { width, rowHeight, parentY, projects } = row;
+  const { rowHeight, parentY, projects } = row;
+  const d3Ctx = useContext(D3Context);
 
   const count = projects.length;
   const paddingTop = 4;
@@ -14,16 +17,27 @@ const GridRow = row => {
         projects.map((p, index) => {
           const y = parentY + height * index;
 
-          return (
-            <rect
-              key={`${index}${p.id}`}
-              x={0}
-              y={y + paddingTop}
-              width={width}
-              height={height - paddingTop}
-              fill={"#A0F0FA"}
-            />
-          );
+          const { assignments } = p;
+
+          return assignments.map(a => {
+            const translateX = d3Ctx.x(new Date(a.startDate));
+            const w = a.startDate ? helpers.useActualWidth(a) : 0;
+
+            return (
+              <g
+                key={`${a.startDate}-${parentY}`}
+                transform={`translate(${translateX}, 0)`}
+              >
+                <rect
+                  x={0}
+                  y={y + paddingTop}
+                  width={w}
+                  height={height - paddingTop}
+                  fill={"#A0F0FA"}
+                />
+              </g>
+            );
+          });
         })}
     </g>
   );
@@ -44,7 +58,6 @@ export const Bars = props => {
               parentY={parentY}
               projects={r.projects}
               rowHeight={rowHeight}
-              width={props.width} // temp
             />
           );
         })}
