@@ -20,7 +20,7 @@ export const Grid = props => {
   const { rows, rowHeight, paddingTop, width } = props;
 
   return (
-    <g>
+    <g className="Grid">
       {rows &&
         rows.map((r, i) => (
           <GridLine

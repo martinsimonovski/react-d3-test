@@ -59,7 +59,7 @@ export const Range = props => {
   const { ranges } = props;
 
   return (
-    <g transform="translate(0,0)">
+    <g className="Range" transform="translate(0,0)">
       <RangeBackground {...props} />
 
       <g>

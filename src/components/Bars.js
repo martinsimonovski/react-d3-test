@@ -47,7 +47,7 @@ export const Bars = props => {
   const { rows, rowHeight, paddingTop } = props;
 
   return (
-    <g>
+    <g className="Bars">
       {rows &&
         rows.map((r, i) => {
           const parentY = rowHeight * i + paddingTop;

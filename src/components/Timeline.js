@@ -2,6 +2,7 @@ import React from "react";
 import { Range } from "./Range";
 import { Grid } from "./Grid";
 import { Bars } from "./Bars";
+import { BarOverlay } from "./BarOverlay";
 
 export const Timeline = props => {
   const { height, width, ranges, rangesHeight, rows, rowHeight } = props;
@@ -13,6 +14,11 @@ export const Timeline = props => {
         <Grid
           width={width}
           height={height}
+          rows={rows}
+          rowHeight={rowHeight}
+          paddingTop={rangesHeight}
+        />
+        <BarOverlay
           rows={rows}
           rowHeight={rowHeight}
           paddingTop={rangesHeight}
