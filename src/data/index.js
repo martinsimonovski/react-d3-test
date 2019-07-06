@@ -5,7 +5,13 @@ export default [
     id: 1,
     firstName: 'Martin',
     lastName: 'Simonovski',
-    availability: 100,
+    availability: [
+      {
+        startDate: '2017-02-01',
+        endDate: null,
+        available: 100
+      }
+    ],
     projects: [
       {
         id: 1,
@@ -78,7 +84,18 @@ export default [
     id: 2,
     firstName: 'Petar',
     lastName: 'Blazevski',
-    availability: 80,
+    availability: [
+      {
+        startDate: '2016-01-01',
+        endDate: '2018-12-31',
+        available: 100
+      },
+      {
+        startDate: '2019-01-01',
+        endDate: null,
+        available: 100
+      }
+    ],
     projects: [
       {
         id: 6,
@@ -156,7 +173,13 @@ export default [
     id: 3,
     firstName: 'Aleko',
     lastName: 'Markovski',
-    availability: 100,
+    availability: [
+      {
+        startDate: '2017-04-01',
+        endDate: null,
+        available: 100
+      }
+    ],
     projects: [
       {
         id: 12,
@@ -215,7 +238,13 @@ export default [
     id: 4,
     firstName: 'Borche',
     lastName: '',
-    availability: 100,
+    availability: [
+      {
+        startDate: '2018-01-01',
+        endDate: null,
+        available: 100
+      }
+    ],
     projects: [
       {
         id: 8,
