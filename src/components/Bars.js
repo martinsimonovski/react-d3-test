@@ -1,6 +1,15 @@
-import React, { useContext } from "react";
-import { D3Context } from "../context";
-import { helpers } from "../utils";
+import React, { useContext } from 'react';
+import { select } from 'd3';
+import { D3Context } from '../context';
+import { helpers } from '../utils';
+
+const mouseOver = (event, a, d) => {
+  console.log('=>>> show tooltip');
+};
+
+const mouseLeave = event => {
+  console.log('====> remove tooltip');
+};
 
 const GridRow = row => {
   const { rowHeight, parentY, projects } = row;
@@ -29,11 +38,13 @@ const GridRow = row => {
                 transform={`translate(${translateX}, 0)`}
               >
                 <rect
+                  className="horizontal-bar"
                   x={0}
                   y={y + paddingTop}
                   width={w}
-                  height={height - paddingTop}
-                  fill={"#A0F0FA"}
+                  height={height}
+                  onMouseOver={mouseOver}
+                  onMouseLeave={mouseLeave}
                 />
               </g>
             );

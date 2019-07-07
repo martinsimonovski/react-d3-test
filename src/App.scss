@@ -58,3 +58,12 @@ $cellBackground: white;
     opacity: 0.85;
   }
 }
+
+.horizontal-bar {
+  fill: #ccd1d9;
+
+  &:hover {
+    fill: #4fc1d9;
+    cursor: pointer;
+  }
+}
