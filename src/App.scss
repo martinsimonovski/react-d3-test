@@ -62,7 +62,7 @@ $cellBackground: white;
 .horizontal-bar {
   fill: #ccd1d9;
 
-  &:hover {
+  &.isHover {
     fill: #4fc1d9;
     cursor: pointer;
   }
