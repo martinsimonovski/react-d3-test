@@ -2,6 +2,16 @@ import React, { useContext } from 'react';
 import { D3Context } from '../context';
 import { helpers } from '../utils';
 
+const getTooltipHtml = item => {
+  return `
+  <p>
+    Available: <strong>${item.available}%</strong>
+    <br />
+    Assigned: <strong>${item.assigned}%</strong>
+  </p>
+`;
+};
+
 const RowOverlay = props => {
   const d3Ctx = useContext(D3Context);
   const { overlays, height, y } = props;
@@ -24,13 +34,10 @@ const RowOverlay = props => {
               stroke={overlay.assigned > overlay.available ? '#000000' : ''}
               style={{ opacity: 0.1 }}
               transform={`translate(${d3Ctx.x(new Date(overlay.startDate))})`}
-              data-tip={`
-                    Available: ${overlay.available}%
-                    <br />
-                    Assigned: ${overlay.assigned}%
-                  `}
-              data-multiline={true}
+              data-tip={getTooltipHtml(overlay)}
+              data-class="tooltip-error"
               data-type={`error`}
+              data-html={true}
             />
           );
         })}

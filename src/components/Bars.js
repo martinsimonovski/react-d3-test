@@ -15,6 +15,16 @@ const mouseLeave = event => {
   elements.classed('isHover', false);
 };
 
+const getTooltipHtml = (project, assignment) => {
+  return `
+  <p>
+    Project: <strong>${project.name}</strong>
+    <br />
+    Assigned: <strong>${assignment.assigned}%</strong>
+  </p>
+`;
+};
+
 const GridRow = row => {
   const { rowHeight, parentY, projects } = row;
   const d3Ctx = useContext(D3Context);
@@ -50,13 +60,9 @@ const GridRow = row => {
                   data-project={`project-${p.id}`}
                   onMouseOver={mouseOver}
                   onMouseLeave={mouseLeave}
-                  data-tip={`
-                    Project: ${p.name}
-                    <br />
-                    Assigned: ${a.assigned}%
-                  `}
-                  data-multiline={true}
+                  data-tip={getTooltipHtml(p, a)}
                   data-type="light"
+                  data-html={true}
                 />
               </g>
             );

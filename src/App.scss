@@ -67,3 +67,17 @@ $cellBackground: white;
     cursor: pointer;
   }
 }
+
+.tooltip-error {
+  background: #ed5565 !important;
+
+  &.place-top,
+  &.place-right,
+  &.place-bottom,
+  &.place-left {
+    &::after {
+      border-bottom-color: #ed5565 !important;
+      border-top-color: #ed5565 !important;
+    }
+  }
+}
