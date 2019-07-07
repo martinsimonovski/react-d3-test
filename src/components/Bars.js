@@ -54,6 +54,13 @@ const GridRow = row => {
                   data-project={`project-${p.id}`}
                   onMouseOver={mouseOver}
                   onMouseLeave={mouseLeave}
+                  data-tip={`
+                    Project: ${p.name}
+                    <br />
+                    Assigned: ${a.assigned}%
+                  `}
+                  data-multiline={true}
+                  data-type="light"
                 />
               </g>
             );

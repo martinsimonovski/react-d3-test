@@ -164,6 +164,13 @@ const RowOverlay = props => {
               stroke={overlay.assigned > overlay.available ? '#000000' : ''}
               style={{ opacity: 0.1 }}
               transform={`translate(${d3Ctx.x(new Date(overlay.startDate))})`}
+              data-tip={`
+                    Available: ${overlay.available}%
+                    <br />
+                    Assigned: ${overlay.assigned}%
+                  `}
+              data-multiline={true}
+              data-type={`error`}
             />
           );
         })}

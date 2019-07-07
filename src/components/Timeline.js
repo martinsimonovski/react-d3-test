@@ -3,6 +3,7 @@ import { Range } from './Range';
 import { Grid } from './Grid';
 import { Bars } from './Bars';
 import { BarOverlay } from './BarOverlay';
+import ReactTooltip from 'react-tooltip';
 
 export const Timeline = props => {
   const { height, width, ranges, rangesHeight, rows, rowHeight } = props;
@@ -31,6 +32,7 @@ export const Timeline = props => {
           paddingTop={rangesHeight}
         />
       </svg>
+      <ReactTooltip />
     </div>
   );
 };
