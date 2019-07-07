@@ -7,16 +7,12 @@ const mouseOver = (event, a, d) => {
   const cls = select(event.target).attr('data-project');
   const elements = selectAll(`.${cls}`);
   elements.classed('isHover', true);
-
-  // console.log('=>>> show tooltip');
 };
 
 const mouseLeave = event => {
   const cls = select(event.target).attr('data-project');
   const elements = selectAll(`.${cls}`);
   elements.classed('isHover', false);
-
-  // console.log('====> remove tooltip');
 };
 
 const GridRow = row => {
