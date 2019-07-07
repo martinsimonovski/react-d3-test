@@ -18,11 +18,20 @@ export const Gantt = props => {
     config.metrics
   );
 
+  const handleResize = () => {
+    setChartWidth(ref.current.offsetWidth);
+  };
+
   useEffect(() => {
     setChartWidth(ref.current.offsetWidth);
     const h = max([config.data.length * config.rowHeight + headerHeight]);
     setChartHeight(h);
     setIsSet(true);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [isSet, config.data.length, config.rowHeight]);
 
   if (!isSet) {
