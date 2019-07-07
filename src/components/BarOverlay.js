@@ -127,7 +127,9 @@ const getResourceOverallData = rows => {
         assignedDates.push({
           ...a
         });
+        return null;
       });
+      return null;
     });
 
     const iSum = intersectionsSum(assignedDates);

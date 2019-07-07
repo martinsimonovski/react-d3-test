@@ -195,24 +195,24 @@ export const getDaysRange = (startDate, endDate) => {
 
 export const get = metrics => {
   let months = [];
-  let headerRanges = [];
+  let headerRanges = {};
   let subHeaderRanges = [];
   let dateBoundary = [];
 
   if (metrics.type === 'overall') {
     const years = getOverallYears(metrics.startDate);
-    headerRanges = [getOverallBoundaries(years)];
-    months = [headerRanges[0].startDate, headerRanges[0].endDate];
+    headerRanges = getOverallBoundaries(years);
+    months = [headerRanges.startDate, headerRanges.endDate];
     subHeaderRanges = getOverallYearBoundaries(years);
   } else if (metrics.type === 'yearly') {
     months = getMonthsOfTheYear(metrics.startDate);
-    headerRanges = [getYearBoundary(metrics.startDate)];
+    headerRanges = getYearBoundary(metrics.startDate);
     subHeaderRanges = getMonthsRange(months);
   } else if (metrics.type === 'quarterly') {
     const quarter = getQuarter(metrics.startDate);
     months = getQuarterMonths(metrics.startDate);
     subHeaderRanges = getMonthsRange(months);
-    headerRanges = [getQuarterHeaderRanges(months, quarter)];
+    headerRanges = getQuarterHeaderRanges(months, quarter);
     if (metrics.subType === 'week') {
       subHeaderRanges = getWeeksRange(
         headerRanges[0].startDate,
@@ -229,14 +229,12 @@ export const get = metrics => {
       eDate.format('DD MMM YYYY')
     );
 
-    headerRanges = [
-      getMontlyBoundaries(
-        sDate.format('DD MMM YYYY'),
-        eDate.format('DD MMM YYYY')
-      )
-    ];
-    headerRanges[0].name = 'Monthly by Week - ' + sDate.format('MMM YYYY');
-    months = [headerRanges[0].startDate, headerRanges[0].endDate];
+    headerRanges = getMontlyBoundaries(
+      sDate.format('DD MMM YYYY'),
+      eDate.format('DD MMM YYYY')
+    );
+    headerRanges.name = 'Monthly by Week - ' + sDate.format('MMM YYYY');
+    months = [headerRanges.startDate, headerRanges.endDate];
 
     if (metrics.subType === 'days') {
       subHeaderRanges = getDaysRange(sDate, eDate);
